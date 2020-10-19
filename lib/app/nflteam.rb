@@ -26,13 +26,15 @@ class NFLTeam
     end
     
     def team_record
-        puts "#{full_name}   #{win_count}-#{lose_count}-#{tie_count}   #{percentage}"
+        puts "#{full_name}   [#{win_count[0]}-#{lose_count[0]}-#{tie_count[0]}]  #{percentage}"
     end
 
     def self.print_teams
         puts "NFL Teams"
-        @@all.each_with_index do |team, index|
-            puts "#{index + 1} #{team.team_record}"
+        @@all.reverse.each_with_index do |team, index|
+            puts "#{index+1}" 
+            puts "#{team.team_record}"
+            
         end
     end
     
