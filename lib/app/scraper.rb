@@ -19,13 +19,17 @@ class Scraper
                 full_name = teams.css('.d3-o-club-fullname').text.strip
                 short_name = teams.css('.d3-o-club-shortname').text.strip
                 team_url = teams.css('.d3-o-club-info').attr('href').value
-                wins = teams.css('td')[1].text.split
-                loses = teams.css('td')[2].text.split
-                ties = teams.css('td')[3].text.split  
+                win_count =  teams.css('td')[1].text.split
+                lose_count = teams.css('td')[2].text.split
+                tie_count = teams.css('td')[3].text.split  
                 percentage = teams.css('td')[4].text.strip
                 binding.pry
                 team = NFLTeam.new(short_name, full_name, wins, loses, percentage, team_url)
+                wins = Wins.find_or_create_by_wins(win_count)
+
+                
             end
+            
         end
 
 
@@ -39,9 +43,7 @@ class Scraper
         team.next_game = established = html_parsed_to_elements.css('td span')[1].text
         team.standing = html_parsed_to_elements.css('div.nfl-c-team-header__ranking.nfl-u-hide-empty').text
         team.record = html_parsed_to_elements.css('div.nfl-c-team-header__stats.nfl-u-hide-empty').text
-        binding.pry
     end
 end
  test = Scraper.new
  test.first_scrape
-
