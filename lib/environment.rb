@@ -1,7 +1,10 @@
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
-require "require_all"
 
 
-require_all "lib/app"
+
+require_relative '../lib/app/cli.rb'
+require_relative '../lib/app/nflteam.rb'
+require_relative '../lib/app/scraper.rb'
+require_relative '../lib/app/wins.rb'
