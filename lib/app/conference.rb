@@ -1,7 +1,7 @@
-class Wins
+class Conference
     @@all = []
-    def initialize(number)
-        @number
+    def initialize(name)
+        @name
         save
     end
     

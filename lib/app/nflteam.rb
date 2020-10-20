@@ -26,7 +26,7 @@ class NFLTeam
     end
     
     def team_record
-        puts "#{full_name}   [#{win_count[0]}-#{lose_count[0]}-#{tie_count[0]}]  #{percentage}"
+        puts "#{full_name}   [#{win_count}-#{lose_count}-#{tie_count}]  #{percentage}"
     end
 
     def self.print_teams
