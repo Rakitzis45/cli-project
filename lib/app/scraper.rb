@@ -34,9 +34,9 @@ class Scraper
                 percentage = team.css('td')[4].text.to_f
                 conference = nfc_table.css('th')[0].text.strip
                 
-                conference_class_instance = Conference.find_or_create_by_conference(conference)
+                conference_instance = Conference.find_or_create_by_conference(conference)
                 # binding.pry
-                team = NFLTeam.new(short_name, full_name, win_count, lose_count, tie_count, percentage, team_url, conference_class_instance) 
+                team = NFLTeam.new(short_name, full_name, win_count, lose_count, tie_count, percentage, team_url, conference_instance) 
         end
 
         afc_teams.each do |team|
@@ -48,10 +48,11 @@ class Scraper
             lose_count = team.css('td')[2].text.to_i
             tie_count = team.css('td')[3].text.to_i
             percentage = team.css('td')[4].text.to_f
+            conference = afc_table.css('th')[0].text.strip
 
-            conference = (afc_table.css('th')[0].text.strip)
+            conference_instance = Conference.find_or_create_by_conference(conference)
             
-            team = NFLTeam.new(short_name, full_name, win_count, lose_count, tie_count, percentage, team_url, conference)
+            team = NFLTeam.new(short_name, full_name, win_count, lose_count, tie_count, percentage, team_url, conference_instance)
         end
 
         def second_scrape(team, team_url)

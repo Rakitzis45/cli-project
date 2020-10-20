@@ -2,10 +2,11 @@ class NFLTeam
 
     @@all = []
 
+    @@nfc_teams = []
     attr_accessor :short_name, :full_name, :win_count, :lose_count, :tie_count, :percentage, :record, :standing, :owners, :coach, :stadium, :next_game, :established, :conference, :division
    
 
-    def initialize(short_name, full_name, win_count, tie_count, lose_count, percentage, team_url, conference)
+    def initialize(short_name, full_name, win_count, tie_count, lose_count, percentage, team_url, conference_instance)
         @short_name = short_name
         @full_name = full_name
         @win_count = win_count
@@ -13,14 +14,8 @@ class NFLTeam
         @lose_count = lose_count
         @percentage = percentage
         @team_url = team_url
-        @conference = conference
+        @conference = conference_instance
         save
-    end
-
-    def print_standings
-        standings = @@all.sort_by(&:@percentage)
-        binding.pry
-    
     end
 
     def save
@@ -32,28 +27,31 @@ class NFLTeam
     end
     
     def team_record
-        puts "#{full_name}   [#{win_count}-#{lose_count}-#{tie_count}]  #{percentage}"
+        "#{full_name}   [#{win_count}-#{lose_count}-#{tie_count}]  #{percentage}"
     end
 
     def self.print_teams
         puts "NFL Teams"
         @@all.each_with_index do |team, index|
-            puts "#{index+1}" 
-            puts "#{team.team_record}"
+            puts "#{index+1} #{team.team_record}"
+           
             
         end
     end
 
-    def self.print_nfc
-        puts "National Football Conference"
-        #
+    # def self.print_nfc
+    #     puts "National Football Conference"
+    #     binding.pry
         
-        
-    end
-
-    # def print_afc
-    # end
     
+
+
+    #     # each_with_index do |team, index|
+    #     #     puts "#{index+1}" 
+    #     #     puts "#{team.team_record}"
+    #end
+        
+        
     def print_team_info
         check_team_info
         puts "#{full_name}: #{@standing} -- #{@record} "
