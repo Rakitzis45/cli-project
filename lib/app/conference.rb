@@ -16,9 +16,9 @@ class Conference
         @@all
     end
 
-    def teams
-        NFLTeams.all.select{|team| team.conference == self}
-    end
+    # def teams
+    #     NFLTeams.all.select{|team| team.conference == self}
+    # end
 
     # def conference_teams
         

@@ -36,19 +36,23 @@ class NFLTeam
 
     def self.print_teams
         puts "NFL Teams"
-        @@all.each_with_index do |team, index|
+        standings =  @@all.sort_by{|team| [team.percentage]}.reverse
+        standings.each_with_index do |team, index|
             puts "#{index+1} #{team.team_record}"
-            puts "******************************"
+            puts "_________________________________"
         end
     end
-
+    
+    #need to sort by reverse order to make teams with highest percentage up top
     def self.print_nfc
         NFLTeam.all.select do |team|
         NFLTeam.nfc_teams << team if team.conference.name == "NFC Team"
+        nfc_team_standings = NFLTeam.nfc_teams.sort_by{|team| [team.percentage]}.reverse
+        @@nfc_teams = nfc_team_standings
         end 
             puts "National Football League"
             puts "_________________________________"
-        @@nfc_teams.each_with_index do |team, index|
+        NFLTeam.nfc_teams.uniq.each_with_index do |team, index|
             
             puts "#{index+1} #{team.team_record}"
             puts "_________________________________"
@@ -62,10 +66,13 @@ class NFLTeam
     def self.print_afc
             NFLTeam.all.select do |team|
             NFLTeam.afc_teams << team if team.conference.name == "AFC Team"
+            afc_team_standings = NFLTeam.afc_teams.sort_by{|team| [team.percentage]}.reverse
+            @@afc_teams = afc_team_standings
+
             end 
-            @@afc_teams.each_with_index do |team, index|
+            @@afc_teams.uniq.each_with_index do |team, index|
                 puts "#{index+1} #{team.team_record}"
-                puts "******************************"
+                puts "_________________________________"
             end
                 puts "Enter team number to get more info about the team"
                 team_select = gets.chomp
@@ -74,7 +81,7 @@ class NFLTeam
         end
     
     def print_team_info
-        check_team_info
+        Scraper.new.second_scrape(self, @team_url)
         puts "#{full_name}: #{@standing} -- #{@record} "
         puts "Owners: #{@owners}"
         puts "Team Established: #{@established}"
@@ -82,12 +89,6 @@ class NFLTeam
         puts "Head Coach: #{@coach}"
         puts "Next Game is against the #{@next_game}"
     end
-
-    def check_team_info
-        if @next_game === nil
-            hash = Scraper.new.second_scrape(self, @team_url)
-        end
-    end  
 
    
 
