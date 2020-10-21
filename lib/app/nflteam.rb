@@ -35,25 +35,32 @@ class NFLTeam
     end
 
     def self.print_teams
-        puts "NFL Teams"
         standings =  @@all.sort_by{|team| [team.percentage]}.reverse
-        standings.each_with_index do |team, index|
-            puts "#{index+1} #{team.team_record}"
-            puts "_________________________________"
+        @@all = standings
+        puts "NFL Standings"
+        puts "_________________________________"
+
+        #binding.pry
+        NFLTeam.all.each_with_index do |team, index|
+        puts "#{index+1} #{team.team_record}"
+        puts "_________________________________"
         end
+        puts "Enter team number to get more info about the team"
+            team_select = gets.chomp
+            select_index = team_select.to_i - 1
+            NFLTeam.all[select_index].print_team_info
     end
     
-    #need to sort by reverse order to make teams with highest percentage up top
+    
     def self.print_nfc
         NFLTeam.all.select do |team|
         NFLTeam.nfc_teams << team if team.conference.name == "NFC Team"
         nfc_team_standings = NFLTeam.nfc_teams.sort_by{|team| [team.percentage]}.reverse
         @@nfc_teams = nfc_team_standings
         end 
-            puts "National Football League"
+            puts "National Football Conference"
             puts "_________________________________"
-        NFLTeam.nfc_teams.uniq.each_with_index do |team, index|
-            
+            @@nfc_teams.uniq.each_with_index do |team, index|
             puts "#{index+1} #{team.team_record}"
             puts "_________________________________"
         end
@@ -68,9 +75,10 @@ class NFLTeam
             NFLTeam.afc_teams << team if team.conference.name == "AFC Team"
             afc_team_standings = NFLTeam.afc_teams.sort_by{|team| [team.percentage]}.reverse
             @@afc_teams = afc_team_standings
-
             end 
-            @@afc_teams.uniq.each_with_index do |team, index|
+                puts "American Football Conference"
+                puts "_________________________________"
+                @@afc_teams.uniq.each_with_index do |team, index|
                 puts "#{index+1} #{team.team_record}"
                 puts "_________________________________"
             end

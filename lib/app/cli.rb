@@ -3,8 +3,6 @@ class CLI
     def initialize
          puts "NFL Team Checker"
          Scraper.new.first_scrape
-
-
     end
     def run
         puts "What you you like view?"
@@ -14,11 +12,6 @@ class CLI
         user_input = gets.chomp
         if user_input == "1"
             NFLTeam.print_teams
-            puts "Enter team number to get more info about the team"
-            team_select = gets.chomp
-            select_index = team_select.to_i - 1
-            NFLTeam.all[select_index].print_team_info 
-
             sleep(2)            
                 puts ""
                 run
