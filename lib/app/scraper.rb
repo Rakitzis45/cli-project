@@ -35,7 +35,7 @@ class Scraper
                 conference = nfc_table.css('th')[0].text.strip
                 
                 conference_instance = Conference.find_or_create_by_conference(conference)
-                # binding.pry
+                
                 team = NFLTeam.new(short_name, full_name, win_count, lose_count, tie_count, percentage, team_url, conference_instance) 
         end
 

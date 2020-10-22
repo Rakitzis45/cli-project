@@ -16,6 +16,7 @@ class NFLTeam
         @team_url = team_url
         @conference = conference_instance
         @@all << self
+    
     end
 
     def self.all
@@ -39,16 +40,17 @@ class NFLTeam
         @@all = standings
         puts "NFL Standings"
         puts "_________________________________"
-
-        #binding.pry
         NFLTeam.all.each_with_index do |team, index|
         puts "#{index+1} #{team.team_record}"
         puts "_________________________________"
         end
         puts "Enter team number to get more info about the team"
-            team_select = gets.chomp
-            select_index = team_select.to_i - 1
-            NFLTeam.all[select_index].print_team_info
+        team_select = gets.chomp
+        select_index = team_select.to_i - 1
+        #select_index > 0 && select_index < 33
+        NFLTeam.all[select_index].print_team_info
+        
+        
     end
     
     
@@ -58,34 +60,34 @@ class NFLTeam
         nfc_team_standings = NFLTeam.nfc_teams.sort_by{|team| [team.percentage]}.reverse
         @@nfc_teams = nfc_team_standings
         end 
-            puts "National Football Conference"
-            puts "_________________________________"
-            @@nfc_teams.uniq.each_with_index do |team, index|
-            puts "#{index+1} #{team.team_record}"
-            puts "_________________________________"
+        puts "National Football Conference"
+        puts "_________________________________"
+        @@nfc_teams.uniq.each_with_index do |team, index|
+        puts "#{index+1} #{team.team_record}"
+        puts "_________________________________"
         end
-            puts "Enter team number to get more info about the team"
-            team_select = gets.chomp
-            select_index = team_select.to_i - 1
-            NFLTeam.nfc_teams[select_index].print_team_info   
+        puts "Enter team number to get more info about the team"
+        team_select = gets.chomp
+        select_index = team_select.to_i - 1
+        NFLTeam.nfc_teams[select_index].print_team_info
     end
 
     def self.print_afc
-            NFLTeam.all.select do |team|
-            NFLTeam.afc_teams << team if team.conference.name == "AFC Team"
-            afc_team_standings = NFLTeam.afc_teams.sort_by{|team| [team.percentage]}.reverse
-            @@afc_teams = afc_team_standings
-            end 
-                puts "American Football Conference"
-                puts "_________________________________"
-                @@afc_teams.uniq.each_with_index do |team, index|
-                puts "#{index+1} #{team.team_record}"
-                puts "_________________________________"
-            end
-                puts "Enter team number to get more info about the team"
-                team_select = gets.chomp
-                select_index = team_select.to_i - 1
-                NFLTeam.afc_teams[select_index].print_team_info 
+        NFLTeam.all.select do |team|
+        NFLTeam.afc_teams << team if team.conference.name == "AFC Team"
+        afc_team_standings = NFLTeam.afc_teams.sort_by{|team| [team.percentage]}.reverse
+        @@afc_teams = afc_team_standings
+        end 
+        puts "American Football Conference"
+        puts "_________________________________"
+        @@afc_teams.uniq.each_with_index do |team, index|
+        puts "#{index+1} #{team.team_record}"
+        puts "_________________________________"
+        end
+        puts "Enter team number to get more info about the team"
+        team_select = gets.chomp
+        select_index = team_select.to_i - 1
+        NFLTeam.afc_teams[select_index].print_team_info 
         end
     
     def print_team_info
