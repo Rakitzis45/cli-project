@@ -47,8 +47,11 @@ class NFLTeam
         puts "Enter team number to get more info about the team"
         team_select = gets.chomp
         select_index = team_select.to_i - 1
-        #select_index > 0 && select_index < 33
+        if select_index.between?(0,31)
         NFLTeam.all[select_index].print_team_info
+        else 
+          puts  "Invalid input. Restarting"
+        end
         
         
     end
@@ -69,7 +72,11 @@ class NFLTeam
         puts "Enter team number to get more info about the team"
         team_select = gets.chomp
         select_index = team_select.to_i - 1
+        if select_index.between?(0,15)
         NFLTeam.nfc_teams[select_index].print_team_info
+        else
+            puts "Invalid input. Restarting"
+        end
     end
 
     def self.print_afc
@@ -87,7 +94,11 @@ class NFLTeam
         puts "Enter team number to get more info about the team"
         team_select = gets.chomp
         select_index = team_select.to_i - 1
-        NFLTeam.afc_teams[select_index].print_team_info 
+        if select_index.between?(0,15)
+             NFLTeam.afc_teams[select_index].print_team_info
+            else
+                puts "Invalid input. Restarting"
+            end
         end
     
     def print_team_info

@@ -1,9 +1,10 @@
+
 class CLI
 
     def initialize
          puts "NFL Team Checker"
          Scraper.new.first_scrape
-        puts"                                          .d.                              "                                        
+        puts"                                          .d.                               "                                        
         puts"                                         ,XkX,                              "         
         puts"                                       .O0,.'OO'                            "          
         puts"                    k;               .c0k;.....;k0c.               ;k.      "           
@@ -55,6 +56,7 @@ class CLI
             puts "2. American Football Conference Standings"
             puts "Enter 1 or 2"
             user_input = gets.chomp
+            
             if user_input == "1"                                                                         
             puts    'NNNNNNNN        NNNNNNNN FFFFFFFFFFFFFFFFFFFFFF       CCCCCCCCCCCCC'
             puts    'N:::::::N       N::::::N F::::::::::::::::::::F    CCC::::::::::::C'
@@ -76,7 +78,7 @@ class CLI
                 sleep(2)
                 puts ""
                 run
-            elsif user_input == "2"                                                                 
+            elsif user_input == "2"                                                                
             puts    '                 AAA                FFFFFFFFFFFFFFFFFFFFFF        CCCCCCCCCCCCC'
             puts    '                A:::A               F::::::::::::::::::::F     CCC::::::::::::C'
             puts    '               A:::::A              F::::::::::::::::::::F   CC:::::::::::::::C'
@@ -97,9 +99,18 @@ class CLI
                 sleep(2)
                 puts ""
                 run
-            end  
+            else
+                invalid_input
+            end
         else
-            run 
+            invalid_input 
         end
     end  
+
+
+    def invalid_input
+        puts "Invalid Input. Restarting"
+        sleep(1)
+        run
+    end
 end
