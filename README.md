@@ -11,6 +11,9 @@ Ruby 2.61
 clone code from github to your local directory
 ```bundle install``` in terminal to update
 
+## Contributing
+When contributing, make sure to contact to make a pull request so that it can be reviewed before being merged. When making a pull request make sure to leave notes of changes and updates.
+
 ## License
     MIT License
 
