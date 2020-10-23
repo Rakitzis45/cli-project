@@ -8,7 +8,8 @@ NFL standings checker is a simple way to find up to date standings for the 2020 
 Ruby 2.61
 
 ## Installation
-clone code from github to your local directory
+clone code from github to your local directory. 
+
 ```bundle install``` in terminal to update
 
 ## License
