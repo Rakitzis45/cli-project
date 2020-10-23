@@ -13,6 +13,7 @@ clone code from github to your local directory.
 ```bundle install``` in terminal to update
 
 ## License
+
     MIT License
 
 Copyright (c) 2020 Michael Rakitzis
