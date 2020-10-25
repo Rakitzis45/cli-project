@@ -15,8 +15,7 @@ class NFLTeam
         @percentage = percentage
         @team_url = team_url
         @conference = conference_instance
-        @@all << self
-    
+        @@all << self 
     end
 
     def self.all
@@ -52,8 +51,6 @@ class NFLTeam
         else 
           puts  "Invalid input. Restarting"
         end
-        
-        
     end
     
     
