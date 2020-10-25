@@ -1,8 +1,8 @@
 # NFL standings checker
-NFL standings checker is a CLI application that uses Ruby.
+NFL standings checker is a CLI application that uses Ruby. It scrapes information from https://www.nfl.com/standings/conference/2020/reg/
 
 ## Introduction
-NFL standings checker is a simple way to find up to date standings for the 2020 NFL season. It also is able to retrieve general information about the each team in the league.
+NFL standings checker is a simple way to find up to date standings in the 2020 NFL season. It also is able to retrieve general information about the each team in the league.
 
 ## Technologies
 Ruby 2.61
@@ -10,7 +10,8 @@ Ruby 2.61
 ## Installation
 clone code from github to your local directory. 
 
-```bundle install``` in terminal to update
+use ```bundle install``` in terminal to update.
+To run the application use the command ```ruby bin/run.rb```
 
 ## Contributing
 When contributing, make sure to contact to make a pull request so that it can be reviewed before being merged. When making a pull request make sure to leave notes of changes and updates.
