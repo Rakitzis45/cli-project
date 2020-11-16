@@ -55,6 +55,7 @@ class NFLTeam
     
     
     def self.print_nfc
+        
         NFLTeam.all.select do |team|
         NFLTeam.nfc_teams << team if team.conference.name == "NFC Team"
         nfc_team_standings = NFLTeam.nfc_teams.sort_by{|team| [team.percentage]}.reverse
